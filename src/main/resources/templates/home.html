@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	    <meta charset="utf-8"/>
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+</head>
+
+<body>
+	<div>Hola</div>
+	
+	<form method="post" th:action="@{/recibirInformacion}">
+		
+		<input type="text" name="nombre"/>
+		<input type="text" name="rfc"/>
+		<input type="text" name="total"/>
+		
+		<input type="submit" value="Enviar"/>
+	
+	</form>
+	
+	<div>
+		LLenado y busqueda de una persona
+		<form method="post" th:action="@{/buscarPersona}">
+			<select name="id" >
+				<option value="0"></option>
+				<option th:each="persona : ${personas}"
+						th:value="${persona.id}"
+						th:text="${persona.nombre}">
+				</option>
+			</select>
+			
+			<input type="submit" value="Buscar"/>
+		</form>
+		Resultado busqueda 
+		<table>
+			<tr>
+				<td th:if="${personaEncontrada != null}" th:text="${personaEncontrada.nombre}"></td>
+				<td th:if="${personaEncontrada != null}" th:text="${personaEncontrada.rfc}"></td>
+				<td th:if="${personaEncontrada != null}" th:text="${personaEncontrada.total}"></td>
+			</tr>
+		</table>
+		
+	</div>
+	
+
+</body>
+
+
+</html>
